@@ -1,0 +1,64 @@
+/* ForgotPasswordPage.css */
+
+.forgot-password-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('./Websitebg\ \(2\).jpg'); /* Adjust the path to your image */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .forgot-password-container {
+    background-color: rgb(0, 0, 0);
+    opacity: 70%;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+  }
+  
+  .forgot-password-heading {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .forgot-password-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .forgot-password-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #E2E8F0; /* Light blue background */
+  }
+  
+  .forgot-password-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: rgb(3, 3, 3);
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .login-link {
+    margin-top: 20px;
+    color: blue;
+  }
+  
+  .login-text {
+    color: white;
+    text-decoration: underline;
+  }
