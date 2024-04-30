@@ -1,0 +1,41 @@
+/* AdminHomePage.css */
+.admin-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('./Websitebg\ \(2\).jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: left;
+  }
+  
+  .admin-actions {
+    text-align: left;
+  }
+  
+  .admin-links {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .admin-links .admin-link {
+    margin-right: 10px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+  }
+  h3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 20px;
+    color: black;
+    font-size: 1.5rem;
+}

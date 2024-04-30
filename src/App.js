@@ -2,16 +2,18 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './homepage';
+import UserloginPage from './ualogin';
+import AdminLoginPage from './adminlogin';
 import LoginPage from './loginpage';
+import HomePage from './homepage';
+import AdminHomePage from './adminhome';
 import SignupPage from './SignupPage';
-import forpassPage from './forpasspage';
+import ForgotPage from './forpasspage';
 import AboutUsPage from './AboutUsPage';
 import WaterResourcePage from './WaterResourcePage';
 import BusinessPage from './bussinesspage';
 import PaymentPage from './paymentpage';
 import FeedbackPage from './feedbackpage';
-import ForgotPage from './forpasspage';
 
 
 function App() {
@@ -19,8 +21,11 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<UserloginPage />} />
+          <Route path="/login/user" element={<LoginPage />} />
+          <Route path="/login/admin" element={<AdminLoginPage />} />
+          <Route path="/adminhome" element={<AdminHomePage />} />
+          <Route path="/login" element={<HomePage />} />
           <Route path="/Signup" element={<SignupPage />} />
           <Route path="/forgot" element={<ForgotPage />} />
           <Route path="/AboutUs" element={<AboutUsPage />} />

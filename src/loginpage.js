@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './LoginPage.css'; // Import custom CSS file
 
-function LoginPage() {
+function UserlogPage() {
   return (
     <div className="login-page">
       <div className="login-container">
@@ -11,7 +11,8 @@ function LoginPage() {
         <form className="login-form">
           <input type="username" placeholder="Username" className="login-input" />
           <input type="password" placeholder="Password" className="login-input" />
-          <button type="submit" className="login-button">Login</button>
+
+          <Link to="/login" className="login-button">Login</Link>
         </form>
         <p className="signup-link">forgot password? <Link to="/forgot" className="signup-text">forgot</Link></p>
       </div>
@@ -19,5 +20,5 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default UserlogPage;
 

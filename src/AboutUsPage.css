@@ -40,7 +40,23 @@
   .about-us-text {
     font-size: 1.2rem;
     line-height: 1.6;
-    padding-top:60px;
+    padding-top:20px;
     font-weight: bold; 
   }
-  
+  .contact-info {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  h4{
+    padding-top:10px;
+    font-weight: bolder;
+    font-size: 2rem;
+  }

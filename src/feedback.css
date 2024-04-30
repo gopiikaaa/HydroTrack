@@ -1,48 +1,56 @@
-/* LoginPage.css */
+/* FeedbackPage.css */
 
-.login-page {
+.feedback-page {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('./Websitebg\ \(2\).jpg');
+    background-image: url('./Websitebg\ \(2\).jpg'); /* Adjust the path to your image */
     background-size: cover;
     background-position: center;
-  }
-  
-  .login-container {
-    background-color: rgb(0, 0, 0);
-   opacity: 70%;
+}
+
+.feedback-container {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    width: 300px;
-    height:350px
-  }
-  
-  .login-heading {
+    width: 400px;
+}
+
+.feedback-heading {
     color: white;
     font-size: 2rem;
     margin-bottom: 20px;
     font-weight: bold;
-  }
-  
-  .login-form {
+}
+
+.feedback-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .login-input {
+}
+
+.feedback-input {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: none;
     border-radius: 5px;
     background-color: #E2E8F0; /* Light blue background */
-  }
-  
-  .login-button {
+}
+
+.feedback-textarea {
+    width: 100%;
+    height: 100px; /* Adjust height as needed */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #E2E8F0; /* Light blue background */
+}
+
+.feedback-button {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
@@ -52,15 +60,14 @@
     color: rgb(3, 3, 3);
     font-weight: bold;
     cursor: pointer;
-  }
-  
-  .signup-link {
+}
+
+.login-link {
     margin-top: 20px;
     color: blue;
-  }
-  
-  .signup-text {
-    color: rgb(0, 0, 0);
+}
+
+.login-text {
+    color: white;
     text-decoration: underline;
-  }
-  
+}

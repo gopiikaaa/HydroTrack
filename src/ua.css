@@ -1,0 +1,59 @@
+/* ua.css */
+.login-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: right;
+  width: 300px;
+  height: 200px;
+  float: right; /* Move the login container to the right */
+}
+
+/* ua.css */
+.app-heading {
+  color: rgb(0, 0, 0);
+  font-size: 4rem;
+  margin-bottom: 40px;
+  font-weight: bold;
+  text-align: left; /* Align the text to the left */
+  position: absolute; /* Position the heading absolutely */
+  top: 30px; /* Distance from the top */
+  left: 30px; /* Distance from the left */
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between; /* Arrange items with space between */
+  align-items: center; /* Center items vertically */
+}
+
+.login-side {
+  flex: 1; /* Occupy remaining space */
+  text-align: center;
+}
+
+.user-login-box,
+.admin-login-box {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.signup-box {
+  text-align: center;
+}
+
+.signup-link {
+  color: white;
+  background-color: #fbfcfd; /* Blue color for the button */
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.signup-link:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+}
