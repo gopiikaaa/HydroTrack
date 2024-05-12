@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import './feedback.css'; // Import your CSS file
+import './feedback.css'; 
+import DropdownMenu from './DropdownMenu';
+
+// Import your CSS file
 
 function FeedbackPage() {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -26,6 +29,7 @@ function FeedbackPage() {
 
   return (
     <div className="feedback-page">
+       <DropdownMenu />
       <div className="feedback-container">
         <h2 className="feedback-heading">Feedback</h2>
         <div className="feedback-form">

@@ -1,0 +1,62 @@
+.verification-wrapper {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    height: 100vh;            /* Use the full height of the viewport */
+    padding: 20px;   
+             /* Optional: padding to ensure content does not touch the edges */
+  }
+  .verificationPage-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255); /* Semi-transparent background */
+    border-radius: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    color: black;
+  }
+  h1{
+    font-size:30px;
+    font-weight: bold;
+  }
+   
+  .verification-form {
+    display: flex;
+    flex-direction: column;
+    max-height: 800px;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="file"] {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #000;
+  }
+  
+  .submit-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
