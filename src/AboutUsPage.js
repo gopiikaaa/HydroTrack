@@ -4,10 +4,12 @@ import image1 from './christie.jpeg';
 import image2 from './gopika.jpeg';
 import image3 from './abu.jpeg';
 import image4 from './hakkim.jpeg';
+import DropdownMenu from './DropdownMenu';
 
 function AboutUsPage() {
   return (
     <div className="about-us-page">
+         <DropdownMenu /> 
       <div className="about-us-container">
         <h2 className="about-us-heading">About Us</h2>
         <div className="image-container">

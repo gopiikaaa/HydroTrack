@@ -1,0 +1,16 @@
+/* ParentComponent.css */
+
+.parent-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-container {
+    margin-bottom: 20px;
+  }
+  
+  .list-container {
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+  }

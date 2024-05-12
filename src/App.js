@@ -14,13 +14,17 @@ import WaterResourcePage from './WaterResourcePage';
 import BusinessPage from './bussinesspage';
 import PaymentPage from './paymentpage';
 import FeedbackPage from './feedbackpage';
+import VerificationPage from './VerificationPage';
+import RequestPage from './RequestPage';
+import CommercialPage from './CommercialPage';
+import WaterResourcesList from './WaterResourcesList';
 
 
 function App() {
-  return (
-    <Router>
-      <div>
-        <Routes>
+return (
+  <Router>
+    <div>
+      <Routes>
           <Route path="/" element={<UserloginPage />} />
           <Route path="/login/user" element={<LoginPage />} />
           <Route path="/login/admin" element={<AdminLoginPage />} />
@@ -33,8 +37,12 @@ function App() {
           <Route path="/business" element={<BusinessPage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/feedback" element={<FeedbackPage />} />
+          <Route path="/Verification" element={<VerificationPage />} />
+          <Route path="/inform-new-source" element={<RequestPage />} />
+          <Route path="/request-supply" element={<CommercialPage />} />
+          <Route path="/WaterResourcesList" element={<WaterResourcesList />} />
         </Routes>
-      </div>
+       </div> 
     </Router>
   );
 }
