@@ -20,6 +20,7 @@ function HydrotrackSearchPage() {
 
   return (
     <div className="map-button-container">
+      <DropdownMenu />
       <input
         type="text"
         value={searchTerm}
