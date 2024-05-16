@@ -51,12 +51,8 @@ function WaterResourceForm() {
           <input type="tel" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
         </div>
         <div>
-          <label>Latitude:</label>
+          <label>Location Address:</label>
           <input type="text" name="latitude" value={formData.latitude} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Longitude:</label>
-          <input type="text" name="longitude" value={formData.longitude} onChange={handleChange} required />
         </div>
         <div>
           <label>Description:</label>
