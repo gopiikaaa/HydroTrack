@@ -18,6 +18,8 @@ import VerificationPage from './VerificationPage';
 import RequestPage from './RequestPage';
 import CommercialPage from './CommercialPage';
 import WaterResourcesList from './WaterResourcesList';
+import HTSearchPage from './HTSearchPage';
+
 
 
 function App() {
@@ -41,6 +43,7 @@ return (
           <Route path="/inform-new-source" element={<RequestPage />} />
           <Route path="/request-supply" element={<CommercialPage />} />
           <Route path="/WaterResourcesList" element={<WaterResourcesList />} />
+          <Route path="/HTSearchPage" element={<HTSearchPage />} />
         
         </Routes>
        </div> 

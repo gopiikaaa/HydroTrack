@@ -10,7 +10,7 @@ const DropdownMenu = () => {
         <Link to="/proofs">Proofs</Link>
         <Link to="/feedback">Feedback</Link>
         <Link to="/Verification">Verification</Link>
-        <Link to="/hydrotrack-search">Locate a Water Source</Link>
+        <Link to="/HTSearchPage">Locate a Water Source</Link>
         <Link to="/request-supply">Request for Supply</Link>
         <Link to="/inform-new-source">Inform Us of a New Source</Link>
         <Link to="/WaterResourcesList" className="nav-link">WaterResourcesList</Link>
