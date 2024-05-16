@@ -18,8 +18,9 @@ import VerificationPage from './VerificationPage';
 import RequestPage from './RequestPage';
 import CommercialPage from './CommercialPage';
 import WaterResourcesList from './WaterResourcesList';
-import HydrotrackSearchPage from './HydrotrackSearchPage';
-import AdminMapPage from './AdminMapPage';
+import HTSearchPage from './HTSearchPage';
+
+
 
 function App() {
 return (
@@ -42,8 +43,8 @@ return (
           <Route path="/inform-new-source" element={<RequestPage />} />
           <Route path="/request-supply" element={<CommercialPage />} />
           <Route path="/WaterResourcesList" element={<WaterResourcesList />} />
-          <Route path="/hydrotrack-search" element={<HydrotrackSearchPage />} />
-          <Route path="/admin-map" element={<AdminMapPage />} />
+          <Route path="/HTSearchPage" element={<HTSearchPage />} />
+        
         </Routes>
        </div> 
     </Router>

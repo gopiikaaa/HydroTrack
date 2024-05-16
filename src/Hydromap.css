@@ -1,0 +1,24 @@
+.map-container {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .map-form {
+    margin-bottom: 20px;
+  }
+  
+  .map-input {
+    padding: 8px;
+    margin-right: 10px;
+    width: 200px;
+  }
+  
+  .map-button {
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  #map {
+    height: 500px;
+    width: 100%;
+  }

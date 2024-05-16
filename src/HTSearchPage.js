@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './map.css'; // Import your CSS file
+import './Hydromap.css'; // Import your CSS file
 import DropdownMenu from './DropdownMenu';
 import MapComponent from './MapComponent'; // Adjust the path as necessary
 
-function HydrotrackSearchPage() {
+function HTSearchPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
@@ -39,6 +39,4 @@ function HydrotrackSearchPage() {
   );
 }
 
-export default HydrotrackSearchPage;
-
-
+export default HTSearchPage;
