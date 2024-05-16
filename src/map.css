@@ -1,29 +1,26 @@
-.map-button-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  .map-input {
-    width: 300px;
-    padding: 15px;
-    font-size: 16px;
-    border-radius: 10px 0 0 10px;
-    border: 2px solid #ccc;
-  }
-  
-  .map-button {
-    padding: 15px 30px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 0 10px 10px 0;
-    cursor: pointer;
-  }
-  
-  .map-button:hover {
-    background-color: #0056b3;
-  }
-  
+.map-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.map-form {
+  margin-bottom: 20px;
+}
+
+.map-input {
+  padding: 8px;
+  margin-right: 10px;
+  width: 200px;
+}
+
+.map-button {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+}
+
+
