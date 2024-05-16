@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './ua.css'; // Import your CSS file
 import image1 from './logo2.png';
 import image2 from './NWRCLOGO2.png';
-function Login() {
+function UserloginPage() {
   return (
     <div className="login-page">
       <div className="login-container">
@@ -31,4 +31,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default UserloginPage;
