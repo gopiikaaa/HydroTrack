@@ -1,7 +1,8 @@
-// components/LoginPage.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Bounce, Zoom, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 import './LoginPage.css'; // Import custom CSS file
 
 function LoginPage() {
@@ -13,23 +14,43 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(' http://localhost:4000/login/user', {
+      const response = await axios.post('http://localhost:4000/login/user', {
         username,
         password
       });
 
       const result = response.data;
-      console.log(result)
+      console.log(result);
 
       if (result.status) {
-        alert(result.message);
-        navigate('/login'); // Redirect to dashboard on successful login
+        toast.success(result.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Zoom,
+          }); // Display success toast
+        setTimeout(() => navigate('/login'), 3000); // Navigate after a delay to allow toast to display
       } else {
-        alert(result.message);
+        toast.error(result.message,  {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+          }); // Display error toast
       }
     } catch (error) {
       console.error('Error logging in:', error);
-      alert('An error occurred. Please try again later.');
+      toast.error('An error occurred. Please try again later.'); // Display error toast
     }
   };
 
@@ -56,6 +77,17 @@ function LoginPage() {
         </form>
         <p className="signup-link">Forgot password? <Link to="/forgot" className="signup-text">Forgot</Link></p>
       </div>
+      <ToastContainer
+position="top-center"
+autoClose={5000}
+hideProgressBar={true}
+newestOnTop={true}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+/> {/* Add ToastContainer with customization */}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './WaterSalesForm.css'; 
 import DropdownMenu from './DropdownMenu';
+import axios from 'axios';
 
 function WaterSalesForm() {
   const [formData, setFormData] = useState({
@@ -24,21 +25,48 @@ function WaterSalesForm() {
     setFormData({ ...formData, certificate: file });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // You can handle form submission logic here
-    console.log(formData);
-    // Reset form after submission
-    setFormData({
-      name: '',
-      phoneNumber: '',
-      email: '',
-      price: '',
-      source: '',
-      address: '',
-      certificate: null,
-      additionalInfo: ''
-    });
+
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('phoneNumber', formData.phoneNumber);
+    data.append('email', formData.email);
+    data.append('price', formData.price);
+    data.append('source', formData.source);
+    data.append('address', formData.address);
+    data.append('additionalInfo', formData.additionalInfo);
+
+    if (formData.certificate) {
+      data.append('certificate', formData.certificate);
+    }
+
+    try {
+      const response = await axios.post('http://localhost:4000/water-sales', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      if (response.data.status) {
+        alert(response.data.message);
+        // Reset form after submission
+        setFormData({
+          name: '',
+          phoneNumber: '',
+          email: '',
+          price: '',
+          source: '',
+          address: '',
+          certificate: null,
+          additionalInfo: ''
+        });
+      } else {
+        alert(response.data.message);
+      }
+    } catch (error) {
+      alert('Error submitting water source.');
+    }
   };
 
   return (
@@ -83,8 +111,5 @@ function WaterSalesForm() {
     </div>
   );
 }
-
-
-
 
 export default WaterSalesForm;
