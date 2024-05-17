@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './WaterSalesForm.css'; 
 import DropdownMenu from './DropdownMenu';
 import axios from 'axios';
+import { storage } from './firebase';
+import {ref as storageRef,uploadBytes,getDownloadURL} from "firebase/storage"
+import { collection } from 'firebase/firestore';
 
 function WaterSalesForm() {
   const [formData, setFormData] = useState({
@@ -27,7 +30,13 @@ function WaterSalesForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const refs= storageRef(storage,`/images/${new Date().getUTCMilliseconds}`)
+    
+    const snapshot= await  uploadBytes(refs, formData.certificate);
+    
+      const url= await getDownloadURL(snapshot.ref)
+      console.log(url)
+          
     const data = new FormData();
     data.append('name', formData.name);
     data.append('phoneNumber', formData.phoneNumber);
@@ -37,38 +46,8 @@ function WaterSalesForm() {
     data.append('address', formData.address);
     data.append('additionalInfo', formData.additionalInfo);
 
-    if (formData.certificate) {
-      data.append('certificate', formData.certificate);
-    }
-
-    try {
-      const response = await axios.post('http://localhost:4000/water-sales', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-
-      if (response.data.status) {
-        alert(response.data.message);
-        // Reset form after submission
-        setFormData({
-          name: '',
-          phoneNumber: '',
-          email: '',
-          price: '',
-          source: '',
-          address: '',
-          certificate: null,
-          additionalInfo: ''
-        });
-      } else {
-        alert(response.data.message);
-      }
-    } catch (error) {
-      alert('Error submitting water source.');
-    }
-  };
-
+   const fireRef=collection(db,"")
+  }
   return (
     <div>
       <DropdownMenu />
@@ -112,4 +91,4 @@ function WaterSalesForm() {
   );
 }
 
-export default WaterSalesForm;
+export default WaterSalesForm ;
