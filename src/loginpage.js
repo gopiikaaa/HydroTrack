@@ -26,7 +26,7 @@ function LoginPage() {
         toast.success(result.message, {
           position: "top-center",
           autoClose: 5000,
-          hideProgressBar: false,
+          hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './feedback.css'; 
 import DropdownMenu from './DropdownMenu';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 
 function FeedbackPage() {
   const [newFeedback, setNewFeedback] = useState('');
@@ -35,15 +37,15 @@ function FeedbackPage() {
           setNewFeedback('');
           setNewName('');
           setNewEmail('');
-          alert(response.data.message); // Display success message
+          toast.success(response.data.message);
         } else {
-          alert(response.data.message); // Display failure message
+          toast.error(response.data.message);
         }
       } catch (error) {
-        alert('Error submitting feedback.');
+        toast.error('Error submitting feedback.');
       }
     } else {
-      alert('Please fill in all fields.');
+      toast.error('Please fill in all fields.');
     }
   };
 
@@ -76,6 +78,17 @@ function FeedbackPage() {
           <button onClick={handleSubmit} className="feedback-button">Submit</button>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }
