@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import './RequestPage.css';
-import DropdownMenu from './DropdownMenu';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
+import './RequestPage.css'; // Import custom CSS file
+
 function WaterResourceForm() {
   const [formData, setFormData] = useState({
     name: '',
@@ -17,25 +20,58 @@ function WaterResourceForm() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // You can add your submission logic here
-    console.log(formData);
-    // Reset form after submission
-    setFormData({
-      name: '',
-      email: '',
-      phoneNumber: '',
-      latitude: '',
-      longitude: '',
-      description: '',
-      additionalComments: ''
-    });
+
+    try {
+      const response = await axios.post('http://localhost:4000/request', formData);
+
+      const result = response.data;
+      console.log(result);
+
+      if (result.status) {
+        toast.success(result.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Zoom,
+        }); // Display success toast
+        // Reset form after submission
+        setFormData({
+          name: '',
+          email: '',
+          phoneNumber: '',
+          latitude: '',
+          longitude: '',
+          description: '',
+          additionalComments: ''
+        });
+      } else {
+        toast.error(result.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+        }); // Display error toast
+      }
+    } catch (error) {
+      console.error('Error submitting request:', error);
+      toast.error('An error occurred. Please try again later.'); // Display error toast
+    }
   };
 
   return (
-  <div>
-    <DropdownMenu />
+    <div>
       <h2>Report Unverified Water Resource</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -64,8 +100,18 @@ function WaterResourceForm() {
         </div>
         <button type="submit">Submit</button>
       </form>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      /> {/* Add ToastContainer with customization */}
     </div>
-
   );
 }
 
