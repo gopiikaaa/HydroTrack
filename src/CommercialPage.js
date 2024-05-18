@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./WaterSalesForm.css";
 import DropdownMenu from "./DropdownMenu";
-import axios from "axios";
 import { storage, db } from "./firebase";
+import { addDoc } from "firebase/firestore";
 import {
   ref as storageRef,
   uploadBytes,
@@ -53,7 +53,7 @@ function WaterSalesForm() {
     data.append("address", formData.address);
     data.append("additionalInfo", formData.additionalInfo);
 
-    const fireRef = collection(db, "databasename");
+    const fireRef = collection(db, "watersources");
     const docRef = await addDoc(fireRef, {
       name: formData.name,
       phoneNumber: formData.phoneNumber,
