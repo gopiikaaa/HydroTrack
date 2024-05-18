@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import './feedback.css'; 
 import DropdownMenu from './DropdownMenu';
-
-// Import your CSS file
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 
 function FeedbackPage() {
-  const [feedbacks, setFeedbacks] = useState([]);
   const [newFeedback, setNewFeedback] = useState('');
   const [newName, setNewName] = useState('');
   const [newEmail, setNewEmail] = useState('');
-  const [replies, setReplies] = useState({});
 
   const handleFeedbackChange = (event) => {
     setNewFeedback(event.target.value);
@@ -23,26 +22,30 @@ function FeedbackPage() {
     setNewEmail(event.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (newFeedback.trim() !== '' && newName.trim() !== '' && newEmail.trim() !== '') {
       const newEntry = {
         name: newName,
         email: newEmail,
         feedback: newFeedback
       };
-      setFeedbacks([...feedbacks, newEntry]);
-      setNewFeedback('');
-      setNewName('');
-      setNewEmail('');
-    } else {
-      alert('Please fill in all fields.');
-    }
-  };
 
-  const handleReply = (index) => {
-    const reply = prompt('Enter your reply:');
-    if (reply !== null) {
-      setReplies({ ...replies, [index]: reply });
+      try {
+        const response = await axios.post('http://localhost:4000/feedback', newEntry);
+
+        if (response.data.status) {
+          setNewFeedback('');
+          setNewName('');
+          setNewEmail('');
+          toast.success(response.data.message);
+        } else {
+          toast.error(response.data.message);
+        }
+      } catch (error) {
+        toast.error('Error submitting feedback.');
+      }
+    } else {
+      toast.error('Please fill in all fields.');
     }
   };
 
@@ -74,18 +77,18 @@ function FeedbackPage() {
           />
           <button onClick={handleSubmit} className="feedback-button">Submit</button>
         </div>
-        <div className="feedback-list">
-          {feedbacks.map((entry, index) => (
-            <div key={index} className="feedback-item">
-              <p><strong>Name:</strong> {entry.name}</p>
-              <p><strong>Email:</strong> {entry.email}</p>
-              <p><strong>Feedback:</strong> {entry.feedback}</p>
-              <button onClick={() => handleReply(index)} className="reply-button">Reply</button>
-              {replies[index] && <p className="reply">Admin Reply: {replies[index]}</p>}
-            </div>
-          ))}
-        </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

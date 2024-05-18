@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Bounce, Zoom, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 import './admin.css'; // Import custom CSS file
 
 function AdminLoginPage() {
@@ -18,17 +20,37 @@ function AdminLoginPage() {
       });
 
       const result = response.data;
-      console.log(result)
+      console.log(result);
 
       if (result.status) {
-        alert(result.message);
-        navigate('/adminhome'); // Redirect to admin home on successful login
+        toast.success(result.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Zoom,
+        }); // Display success toast
+        setTimeout(() => navigate('/adminhome'), 3000); // Navigate after a delay to allow toast to display
       } else {
-        alert(result.message);
+        toast.error(result.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+        }); // Display error toast
       }
     } catch (error) {
       console.error('Error logging in:', error);
-      alert('An error occurred. Please try again later.');
+      toast.error('An error occurred. Please try again later.'); // Display error toast
     }
   };
 
@@ -53,6 +75,17 @@ function AdminLoginPage() {
           />
           <button type="submit" className="login-button">Login</button>
         </form>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={true}
+          newestOnTop={true}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        /> {/* Add ToastContainer with customization */}
         <p className="signup-link">Forgot password? <Link to="/forgot" className="signup-text">Forgot</Link></p>
       </div>
     </div>
@@ -60,4 +93,3 @@ function AdminLoginPage() {
 }
 
 export default AdminLoginPage;
-

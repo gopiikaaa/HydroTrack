@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './SignupPage.css'; // Import custom CSS file
+import { Bounce, Zoom, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './SignupPage.css';
 
 function SignupPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -18,10 +20,40 @@ function SignupPage() {
         password,
         phoneNumber,
       });
-      setMessage(response.data);
+      const result = response.data;
+
+      if (result.status) {
+        toast.success(result.message, {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+          transition: Zoom,
+        });
+
+        setTimeout(() => {
+          navigate('/');
+        }, 3000);
+      } else {
+        toast.error(result.message, {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: 'colored',
+          transition: Bounce,
+        });
+      }
     } catch (error) {
       console.error('Error during signup:', error);
-      setMessage('An error occurred during signup. Please try again.');
+      toast.error('An error occurred during signup. Please try again.');
     }
   };
 
@@ -53,7 +85,17 @@ function SignupPage() {
           />
           <button type="submit" className="signup-button">Signup</button>
         </form>
-        {message && <p>{message}</p>}
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <p className="login-link">Already have an account? <Link to="/login/user" className="login-text">Login</Link></p>
       </div>
     </div>
