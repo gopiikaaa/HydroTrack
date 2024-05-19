@@ -1,14 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import './WaterResourcesList.css';
 import DropdownMenu from './DropdownMenu';
-import { getDocs,collection } from "firebase/firestore";
-import {db} from "./firebase.js"
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "./firebase.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useEffect, useState } from 'react';
+import './WaterResourcesList.css';
 
 function WaterResourcesList({ waterResources }) {
-  
+
   const [firestoreData, setFirestoreData] = useState([]);
 
   useEffect(() => {
@@ -33,8 +32,6 @@ function WaterResourcesList({ waterResources }) {
     }, 2000); // 2-second delay
   };
 
-  
-  
   return (
     <div className="water-resources-list">
       <DropdownMenu />
@@ -45,7 +42,9 @@ function WaterResourcesList({ waterResources }) {
             <th>Name</th>
             <th>Phone Number</th>
             <th>Email</th>
-            <th>Price</th>
+            <th>Price
+              <div>(rate per month)</div>
+            </th>
             <th>Source</th>
             <th>Address</th>
             <th>Verification Document</th> {/* New column */}
@@ -59,17 +58,19 @@ function WaterResourcesList({ waterResources }) {
               <td>{resource.name}</td>
               <td>{resource.phoneNumber}</td>
               <td>{resource.email}</td>
-              <td>{resource.price}</td>
+              <td> {resource.price}</td>
               <td>{resource.source}</td>
               <td>{resource.address}</td>
-              <td><strong>
-                <a href={resource.certificate} target="_blank" rel="noopener noreferrer">
-                  Document Link
-                </a>
+              <td>
+                <strong>
+                  <a href={resource.certificate} target="_blank" rel="noopener noreferrer">
+                    Document Link
+                  </a>
                 </strong>
               </td>
               <td>{resource.additionalInfo}</td>
-              <td><button className='Payment-button' onClick={handlePaymentClick}>Pay Now</button>
+              <td>
+                <button className='payment-button' onClick={handlePaymentClick}>Pay Now</button>
                 {firestoreData.length > 0 && firestoreData[index] ? firestoreData[index].blankValue : ''}
               </td>
             </tr>
