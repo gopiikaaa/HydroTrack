@@ -10,15 +10,13 @@ import AdminHomePage from './adminhome';
 import SignupPage from './SignupPage';
 import ForgotPage from './forpasspage';
 import AboutUsPage from './AboutUsPage';
-import WaterResourcePage from './WaterResourcePage';
-import BusinessPage from './bussinesspage';
 import FeedbackPage from './feedbackpage';
-import VerificationPage from './VerificationPage';
 import RequestPage from './RequestPage';
 import CommercialPage from './CommercialPage';
 import WaterResourcesList from './WaterResourcesList';
 import HTSearchPage from './HTSearchPage';
 import RequestsList from './unverifiedSources';
+import WaterResourcesListAdmin from './WaterResourcesListAdmin';
 
 
 
@@ -35,15 +33,13 @@ return (
           <Route path="/Signup" element={<SignupPage />} />
           <Route path="/forgot" element={<ForgotPage />} />
           <Route path="/AboutUs" element={<AboutUsPage />} />
-          <Route path="/water-resource" element={<WaterResourcePage />} />
-          <Route path="/business" element={<BusinessPage />} />
           <Route path="/feedback" element={<FeedbackPage />} />
-          <Route path="/Verification" element={<VerificationPage />} />
           <Route path="/inform-new-source" element={<RequestPage />} />
           <Route path="/request-supply" element={<CommercialPage />} />
           <Route path="/WaterResourcesList" element={<WaterResourcesList />} />
           <Route path="/unverifiedsources" element={<RequestsList />} />
           <Route path="/HTSearchPage" element={<HTSearchPage />} />
+          <Route path="/WaterResourcesListAdmin" element={<WaterResourcesListAdmin />} />
         
         </Routes>
        </div> 

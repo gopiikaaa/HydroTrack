@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './WaterResourcesList.css';
-import DropdownMenuAdmin from './DropdownMenu';
+import DropdownMenuAdmin from './DropdownMenuAdmin.js';
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "./firebase.js";
 
