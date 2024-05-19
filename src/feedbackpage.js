@@ -24,15 +24,21 @@ function FeedbackPage() {
 
   const handleSubmit = async () => {
     if (newFeedback.trim() !== '' && newName.trim() !== '' && newEmail.trim() !== '') {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(newEmail)) {
+        toast.error('Please enter a valid email address.');
+        return;
+      }
+  
       const newEntry = {
         name: newName,
         email: newEmail,
         feedback: newFeedback
       };
-
+  
       try {
         const response = await axios.post('http://localhost:4000/feedback', newEntry);
-
+  
         if (response.data.status) {
           setNewFeedback('');
           setNewName('');
