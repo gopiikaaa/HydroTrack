@@ -1,8 +1,40 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './WaterResourcesList.css';
 import DropdownMenu from './DropdownMenu';
+import { getDocs,collection } from "firebase/firestore";
+import {db} from "./firebase.js"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function WaterResourcesList({ waterResources }) {
+  
+  const [firestoreData, setFirestoreData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const querySnapshot = await getDocs(collection(db, 'watersources'));
+      const data = [];
+      querySnapshot.forEach((doc) => {
+        data.push(doc.data());
+      });
+      console.log(data);
+      setFirestoreData(data);
+    };
+
+    fetchData();
+  }, []);
+
+  const handlePaymentClick = () => {
+    toast.info('Payment processing...', { autoClose: false }); // Show loading toast
+    setTimeout(() => {
+      toast.dismiss(); // Dismiss the loading toast
+      toast.success('Payment successful!'); // Show success toast
+    }, 2000); // 2-second delay
+  };
+
+  
+  
   return (
     <div className="water-resources-list">
       <DropdownMenu />
@@ -16,38 +48,35 @@ function WaterResourcesList({ waterResources }) {
             <th>Price</th>
             <th>Source</th>
             <th>Address</th>
+            <th>Verification Document</th> {/* New column */}
             <th>Additional Information</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {waterResources?.map((resource, index) => (
+          {firestoreData && firestoreData?.map((resource, index) => (
             <tr key={index} className="water-resource-item">
-              <td><strong>Name:</strong> {resource.name}</td>
-              <td><strong>Phone Number:</strong> {resource.phoneNumber}</td>
-              <td><strong>Email:</strong> {resource.email}</td>
-              <td><strong>Price:</strong> {resource.price}</td>
-              <td><strong>Source:</strong> {resource.source}</td>
-              <td><strong>Address:</strong> {resource.address}</td>
-              <td><strong>Additional Information:</strong> {resource.additionalInfo}</td>
+              <td>{resource.name}</td>
+              <td>{resource.phoneNumber}</td>
+              <td>{resource.email}</td>
+              <td>{resource.price}</td>
+              <td>{resource.source}</td>
+              <td>{resource.address}</td>
+              <td><strong>
+                <a href={resource.certificate} target="_blank" rel="noopener noreferrer">
+                  Document Link
+                </a>
+                </strong>
+              </td>
+              <td>{resource.additionalInfo}</td>
+              <td><button className='Payment-button' onClick={handlePaymentClick}>Pay Now</button>
+                {firestoreData.length > 0 && firestoreData[index] ? firestoreData[index].blankValue : ''}
+              </td>
             </tr>
           ))}
-            {/* Subsequent rows with each attribute in its own row */}
-          
-             {waterResources?.map((resource, index) => ( 
-  Object.keys(resource).slice(2).map((attribute, attrIndex) => (
-    <tr key={`${index}-${attrIndex}`} className="water-resource-item">
-      <td></td> {/* Empty cell for name */}
-      <td></td> {/* Empty cell for phone number */}
-      <td>{resource[attribute]}</td> {/* Render each attribute in its own row */}
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  ))
-))}
         </tbody>
       </table>
+      <ToastContainer />
     </div>
   );
 }
