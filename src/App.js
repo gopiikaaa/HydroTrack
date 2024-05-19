@@ -12,7 +12,6 @@ import ForgotPage from './forpasspage';
 import AboutUsPage from './AboutUsPage';
 import WaterResourcePage from './WaterResourcePage';
 import BusinessPage from './bussinesspage';
-import PaymentPage from './paymentpage';
 import FeedbackPage from './feedbackpage';
 import VerificationPage from './VerificationPage';
 import RequestPage from './RequestPage';
@@ -37,7 +36,6 @@ return (
           <Route path="/AboutUs" element={<AboutUsPage />} />
           <Route path="/water-resource" element={<WaterResourcePage />} />
           <Route path="/business" element={<BusinessPage />} />
-          <Route path="/payment" element={<PaymentPage />} />
           <Route path="/feedback" element={<FeedbackPage />} />
           <Route path="/Verification" element={<VerificationPage />} />
           <Route path="/inform-new-source" element={<RequestPage />} />
