@@ -9,6 +9,8 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { collection } from "firebase/firestore";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function WaterSalesForm() {
   const [formData, setFormData] = useState({
@@ -34,6 +36,20 @@ function WaterSalesForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+        // Email Validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+          toast.error('Please enter a valid email address.');
+          return;
+        }
+    
+        // Mobile Number Validation
+        const mobileRegex = /^\d{10}$/;
+        if (!mobileRegex.test(formData.phoneNumber)) {
+          toast.error('Please enter a valid 10-digit mobile number.');
+          return;
+        }
+    
     const refs = storageRef(
       storage,
       `/images/${new Date().getUTCMilliseconds}`
@@ -65,7 +81,7 @@ function WaterSalesForm() {
       certificate: url,
     });
     console.log(docRef.id);
-    alert("added");
+    toast.success('Form Submitted Successfully!')
   };
   return (
     <div>
@@ -145,6 +161,17 @@ function WaterSalesForm() {
         </div>
         <button type="submit">Submit</button>
       </form>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }
