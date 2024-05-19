@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import DropdownMenu from './DropdownMenu';
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 import './RequestPage.css'; // Import custom CSS file
 
@@ -9,8 +10,7 @@ function WaterResourceForm() {
     name: '',
     email: '',
     phoneNumber: '',
-    latitude: '',
-    longitude: '',
+    locationAddress: '',
     description: '',
     additionalComments: ''
   });
@@ -20,11 +20,75 @@ function WaterResourceForm() {
     setFormData({ ...formData, [name]: value });
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhoneNumber = (phoneNumber) => {
+    const phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(phoneNumber);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const { name, email, phoneNumber, locationAddress, description } = formData;
+
+    if (!name || !email || !phoneNumber || !locationAddress || !description) {
+      toast.error('All fields except Additional Comments are required.', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      toast.error('Invalid email address.', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+      return;
+    }
+
+    if (!validatePhoneNumber(phoneNumber)) {
+      toast.error('Invalid phone number. It must be exactly 10 digits.', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+      return;
+    }
+
     try {
-      const response = await axios.post('http://localhost:4000/request', formData);
+      const response = await axios.post('http://localhost:4000/request', {
+        name: formData.name,
+        email: formData.email,
+        phonenumber: formData.phoneNumber,
+        address: formData.locationAddress,
+        description: formData.description,
+        additional_comments: formData.additionalComments || '' // Provide default value if not present
+      });
 
       const result = response.data;
       console.log(result);
@@ -46,8 +110,7 @@ function WaterResourceForm() {
           name: '',
           email: '',
           phoneNumber: '',
-          latitude: '',
-          longitude: '',
+          locationAddress: '',
           description: '',
           additionalComments: ''
         });
@@ -72,6 +135,7 @@ function WaterResourceForm() {
 
   return (
     <div>
+      <DropdownMenu />
       <h2>Report Unverified Water Resource</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -88,7 +152,7 @@ function WaterResourceForm() {
         </div>
         <div>
           <label>Location Address:</label>
-          <input type="text" name="latitude" value={formData.latitude} onChange={handleChange} required />
+          <input type="text" name="locationAddress" value={formData.locationAddress} onChange={handleChange} required />
         </div>
         <div>
           <label>Description:</label>
