@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import "./WaterSalesForm.css";
 import DropdownMenu from "./DropdownMenu";
 import { storage, db } from "./firebase";
-import { addDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import {
   ref as storageRef,
   uploadBytes,
   getDownloadURL,
 } from "firebase/storage";
-import { collection } from "firebase/firestore";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
