@@ -31,7 +31,9 @@ function WaterResourcesListAdmin({ waterResources }) {
             <th>Name</th>
             <th>Phone Number</th>
             <th>Email</th>
-            <th>Price</th>
+            <th>Price
+              <div>(rate per Litre)</div>
+            </th>
             <th>Source</th>
             <th>Address</th>
             <th>Verification Document</th> {/* New column */}

@@ -11,8 +11,9 @@
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
-  text-align: center; /* Center text horizontally */
+  text-align: center;
 }
+
 
 .top-links {
   position: absolute;
@@ -62,6 +63,13 @@
   margin-bottom: 250px; /* Add space between h2 and other content */
 }
 
+.container h1,
+.container h2 {
+  color: white; /* Change text color to white */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Black drop shadow */
+}
+
+
 .image1 {
   position: absolute;
   top: 20px; /* Adjust the top position as needed */
@@ -80,3 +88,18 @@
   padding-right: 40px;
   height: 120px; /* Adjust the height of the images */
 }
+
+.image1,
+.image2 {
+  filter: grayscale(100%); /* Convert images to grayscale */
+  transition: filter 0.5s ease-in-out; /* Smooth transition for grayscale effect */
+}
+
+
+.image1:hover,
+.image2:hover {
+  filter: grayscale(0%); /* Revert grayscale filter on hover */
+}
+
+
+

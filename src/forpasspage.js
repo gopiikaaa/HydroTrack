@@ -8,10 +8,16 @@ import './forgotpass.css'; // Import custom CSS file
 function ForgotPasswordPage() {
   const [username, setUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
+
+    if (newPassword !== confirmPassword) {
+      toast.error('Passwords do not match!');
+      return;
+    }
 
     try {
       const response = await axios.post('http://localhost:4000/forgot', {
@@ -33,7 +39,6 @@ function ForgotPasswordPage() {
     }
   };
 
-
   return (
     <div className="forgot-password-page">
       <div className="forgot-password-container">
@@ -52,6 +57,13 @@ function ForgotPasswordPage() {
             className="forgot-password-input"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            className="forgot-password-input"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <button type="submit" className="forgot-password-button">Reset Password</button>
         </form>
