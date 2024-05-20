@@ -31,11 +31,6 @@ const DropdownMenu = () => {
         theme: "colored",
         transition: Zoom,
       });
-
-      setTimeout(() => {
-        // Perform sign-out logic here, e.g., clear user session
-        window.location.href = '/'; // Redirect to home page
-      }, 2000); // Delay navigation to ensure toast is shown
     }, 2000);
   };
 
@@ -51,7 +46,17 @@ const DropdownMenu = () => {
         <Link to="/aboutus">About Us</Link>
         <Link to="/" onClick={handleSignOut} className="signout-link">Sign Out</Link>
       </div>
-      <ToastContainer />
+      <ToastContainer 
+      position= "top-center"
+      autoClose= {5000}
+      hideProgressBar= {true}
+      closeOnClick= {true}
+      pauseOnHover= {true}
+      draggable= {true}
+      progress= {undefined}
+      theme= "colored"
+      transition= {Zoom}
+      />
     </div>
   );
 };
