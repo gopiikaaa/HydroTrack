@@ -1,14 +1,13 @@
 import DropdownMenu from './DropdownMenu';
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "./firebase.js";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import './WaterResourcesList.css';
 
 function WaterResourcesList({ waterResources }) {
-
   const [firestoreData, setFirestoreData] = useState([]);
+  // eslint-disable-next-line
+  const [proceedToPayDisabled, setProceedToPayDisabled] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,20 +16,11 @@ function WaterResourcesList({ waterResources }) {
       querySnapshot.forEach((doc) => {
         data.push(doc.data());
       });
-      console.log(data);
       setFirestoreData(data);
     };
 
     fetchData();
   }, []);
-
-  const handlePaymentClick = () => {
-    toast.info('Payment processing...', { autoClose: false }); // Show loading toast
-    setTimeout(() => {
-      toast.dismiss(); // Dismiss the loading toast
-      toast.success('Payment successful!'); // Show success toast
-    }, 2000); // 2-second delay
-  };
 
   return (
     <div className="water-resources-list">
@@ -70,16 +60,19 @@ function WaterResourcesList({ waterResources }) {
               </td>
               <td>{resource.additionalInfo}</td>
               <td>
-                <button className='payment-button' onClick={handlePaymentClick}>Pay Now</button>
-                {firestoreData.length > 0 && firestoreData[index] ? firestoreData[index].blankValue : ''}
+                <button className='payment-button' disabled onClick={() => {}}>Proceed to pay</button>
+                {/* {firestoreData.length > 0 && firestoreData[index] ? firestoreData[index].blankValue : ''} */}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <ToastContainer />
     </div>
   );
 }
 
 export default WaterResourcesList;
+
+
+
+
