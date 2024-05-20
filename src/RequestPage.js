@@ -87,7 +87,8 @@ function WaterResourceForm() {
         phonenumber: formData.phoneNumber,
         address: formData.locationAddress,
         description: formData.description,
-        additional_comments: formData.additionalComments || '' // Provide default value if not present
+        additional_comments: formData.additionalComments || '', // Provide default value if not present
+        approval: true // Include approval with default value true
       });
 
       const result = response.data;

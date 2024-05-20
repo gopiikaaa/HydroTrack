@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './WaterResourcesList.css';
 import DropdownMenuAdmin from './DropdownMenuAdmin.js';
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, doc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase.js";
 
 function RequestsList() {
@@ -12,7 +12,7 @@ function RequestsList() {
       const querySnapshot = await getDocs(collection(db, 'Requests'));
       const data = [];
       querySnapshot.forEach((doc) => {
-        data.push(doc.data());
+        data.push({ ...doc.data(), id: doc.id }); // Include the document ID in the data
       });
       console.log(data);
       setFirestoreData(data);
@@ -20,6 +20,22 @@ function RequestsList() {
 
     fetchData();
   }, []);
+
+  const handleApprove = async (id, index) => {
+    const docRef = doc(db, 'Requests', id);
+    await updateDoc(docRef, { approval: true });
+    const updatedData = [...firestoreData];
+    updatedData[index].approval = true;
+    setFirestoreData(updatedData);
+  };
+
+  const handleReject = async (id, index) => {
+    const docRef = doc(db, 'Requests', id);
+    await updateDoc(docRef, { approval: false });
+    const updatedData = [...firestoreData];
+    updatedData[index].approval = false;
+    setFirestoreData(updatedData);
+  };
 
   return (
     <div className="water-resources-list">
@@ -33,7 +49,9 @@ function RequestsList() {
             <th>Email</th>
             <th>Location Address</th>
             <th>Description</th>
+            <th>Approval Status</th>
             <th>Additional Comments</th>
+            <th>Approval</th>
           </tr>
         </thead>
         <tbody>
@@ -44,8 +62,10 @@ function RequestsList() {
               <td>{request.email}</td>  
               <td>{request.Location_Address}</td>
               <td>{request.description}</td>
-              <td>{request.additional_comments} 
-              {firestoreData.length > 0 && firestoreData[index] ? firestoreData[index].blankValue : ''}
+              <td>{request.approval === true ? "Approved" : request.approval === false ? "Rejected" : ""}</td>
+              <td>{request.additional_comments}</td>
+              <td>
+                <button onClick={() => handleApprove(request.id, index)}>Approve</button>     <button onClick={() => handleReject(request.id, index)}>Reject</button>
               </td>
             </tr>
           ))}
