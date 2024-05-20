@@ -33,7 +33,7 @@ function WaterResourcesList({ waterResources }) {
             <th>Phone Number</th>
             <th>Email</th>
             <th>Price
-              <div>(rate per month)</div>
+              <div>(rate per Litre)</div>
             </th>
             <th>Source</th>
             <th>Address</th>

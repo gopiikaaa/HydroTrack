@@ -117,7 +117,7 @@ function WaterSalesForm() {
           />
         </div>
         <div>
-          <label>Price:</label>
+          <label>Price/Litre:</label>
           <input
             type="text"
             name="price"
