@@ -1,14 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './WaterResourcesList.css';
 import DropdownMenuAdmin from './DropdownMenuAdmin.js';
-import { getDocs,collection } from "firebase/firestore";
-import {db} from "./firebase.js"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "./firebase.js";
 
 function WaterResourcesListAdmin({ waterResources }) {
-  
+
   const [firestoreData, setFirestoreData] = useState([]);
 
   useEffect(() => {
@@ -18,23 +15,12 @@ function WaterResourcesListAdmin({ waterResources }) {
       querySnapshot.forEach((doc) => {
         data.push(doc.data());
       });
-      console.log(data);
       setFirestoreData(data);
     };
 
     fetchData();
   }, []);
 
-  const handlePaymentClick = () => {
-    toast.info('Payment processing...', { autoClose: false }); // Show loading toast
-    setTimeout(() => {
-      toast.dismiss(); // Dismiss the loading toast
-      toast.success('Payment successful!'); // Show success toast
-    }, 2000); // 2-second delay
-  };
-
-  
-  
   return (
     <div className="water-resources-list">
       <DropdownMenuAdmin />
@@ -50,7 +36,6 @@ function WaterResourcesListAdmin({ waterResources }) {
             <th>Address</th>
             <th>Verification Document</th> {/* New column */}
             <th>Additional Information</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -62,23 +47,21 @@ function WaterResourcesListAdmin({ waterResources }) {
               <td>{resource.price}</td>
               <td>{resource.source}</td>
               <td>{resource.address}</td>
-              <td><strong>
-                <a href={resource.certificate} target="_blank" rel="noopener noreferrer">
-                  Document Link
-                </a>
+              <td>
+                <strong>
+                  <a href={resource.certificate} target="_blank" rel="noopener noreferrer">
+                    Document Link
+                  </a>
                 </strong>
               </td>
               <td>{resource.additionalInfo}</td>
-              <td><button className='Payment-button' onClick={handlePaymentClick}>Pay Now</button>
-                {firestoreData.length > 0 && firestoreData[index] ? firestoreData[index].blankValue : ''}
-              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <ToastContainer />
     </div>
   );
 }
 
 export default WaterResourcesListAdmin;
+
