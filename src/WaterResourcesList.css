@@ -1,22 +1,35 @@
 /* WaterResourcesList.css */
 
 .water-resources-list {
-    margin-top: 20px;
-  }
-  
-  .water-resources-list table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .water-resources-list th,
-  .water-resources-list td {
-    padding: 8px;
-    border: 1px solid black;
-  }
-  
-  .water-resources-list th {
-    background-color: #f2f2f2;
-    text-align: left;
-  }
-  
+  margin-top: 20px;
+}
+
+.water-resources-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.water-resources-list th,
+.water-resources-list td {
+  padding: 8px;
+  border: 1px solid black;
+}
+
+.water-resources-list th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.water-resources-list .payment-button {
+  background-color: grey;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.water-resources-list .payment-button:hover {
+  background-color: grey;
+}
