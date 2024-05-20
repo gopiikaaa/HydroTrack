@@ -31,11 +31,6 @@ const DropdownMenuAdmin = () => {
         theme: "colored",
         transition: Zoom,
       });
-
-      setTimeout(() => {
-        // Perform sign-out logic here, e.g., clear user session
-        window.location.href = '/'; // Redirect to home page
-      }, 2000); // Delay navigation to ensure toast is shown
     }, 2000);
   };
 

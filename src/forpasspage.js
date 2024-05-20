@@ -55,7 +55,7 @@ function ForgotPasswordPage() {
           />
           <button type="submit" className="forgot-password-button">Reset Password</button>
         </form>
-        <p className="login-link">Remembered your password? <Link to="/login" className="login-text">Login</Link></p>
+        <p className="login-link">Remembered your password? <Link to="/login/user" className="login-text">Login</Link></p>
       </div>
       <ToastContainer
         position="top-right"
