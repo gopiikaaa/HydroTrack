@@ -65,7 +65,8 @@ function RequestsList() {
               <td>{request.approval === true ? "Approved" : request.approval === false ? "Rejected" : ""}</td>
               <td>{request.additional_comments}</td>
               <td>
-                <button onClick={() => handleApprove(request.id, index)}>Approve</button>     <button onClick={() => handleReject(request.id, index)}>Reject</button>
+                <button className="approve-button" onClick={() => handleApprove(request.id, index)}>Approve</button>    
+                 <button className="reject-button" onClick={() => handleReject(request.id, index)}>Reject</button>
               </td>
             </tr>
           ))}
