@@ -79,7 +79,7 @@ function ForgotPasswordPage() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      /> {/* Add ToastContainer with customization */}
+      /> {/* Add ToastContainer with customization */} 
     </div>
   );
 }
