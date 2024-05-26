@@ -9,6 +9,8 @@ function SignupPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [ifscCode, setIfscCode] = useState('');
+  const [accountNumber, setAccountNumber] = useState('');
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
@@ -19,6 +21,8 @@ function SignupPage() {
         username,
         password,
         phoneNumber,
+        ifscCode,
+        accountNumber,
       });
       const result = response.data;
 
@@ -83,6 +87,20 @@ function SignupPage() {
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
+          <input
+            type="text"
+            placeholder="IFSC Code"
+            className="signup-input"
+            value={ifscCode}
+            onChange={(e) => setIfscCode(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Account Number"
+            className="signup-input"
+            value={accountNumber}
+            onChange={(e) => setAccountNumber(e.target.value)}
+          />
           <button type="submit" className="signup-button">Signup</button>
         </form>
         <ToastContainer
@@ -103,3 +121,4 @@ function SignupPage() {
 }
 
 export default SignupPage;
+

@@ -1,5 +1,3 @@
-// App.js
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UserloginPage from './ualogin';
@@ -17,14 +15,14 @@ import WaterResourcesList from './WaterResourcesList';
 import HTSearchPage from './HTSearchPage';
 import RequestsList from './unverifiedSources';
 import WaterResourcesListAdmin from './WaterResourcesListAdmin';
-
+import PaymentPage from './Paymentpage.js'; // Ensure this matches the file name
 
 
 function App() {
-return (
-  <Router>
-    <div>
-      <Routes>
+  return (
+    <Router>
+      <div>
+        <Routes>
           <Route path="/" element={<UserloginPage />} />
           <Route path="/login/user" element={<LoginPage />} />
           <Route path="/login/admin" element={<AdminLoginPage />} />
@@ -40,9 +38,10 @@ return (
           <Route path="/unverifiedsources" element={<RequestsList />} />
           <Route path="/HTSearchPage" element={<HTSearchPage />} />
           <Route path="/WaterResourcesListAdmin" element={<WaterResourcesListAdmin />} />
+          <Route path="/payment/:id" element={<PaymentPage />} /> {/* Ensure this matches the path */}
         
         </Routes>
-       </div> 
+      </div>
     </Router>
   );
 }

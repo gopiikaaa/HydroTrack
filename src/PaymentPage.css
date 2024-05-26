@@ -1,0 +1,64 @@
+.payment-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .payment-page h2 {
+    margin-bottom: 20px;
+  }
+  
+  .seller-info {
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .seller-info p {
+    margin: 10px 0;
+  }
+  
+  .payment-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .payment-form label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+  }
+  
+  .payment-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .pay-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .pay-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .pay-button:not(:disabled):hover {
+    background-color: #45a049;
+  }
+  
