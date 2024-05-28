@@ -91,8 +91,10 @@ function WaterSalesForm() {
     <div>
       <DropdownMenu />
       <div className="form-container">
-        <button onClick={handleHelpClick} className="help-button">Help</button>
-        <h2>Water Sales Form</h2>
+        <div className="header-container">
+          <h2>Water Sales Form</h2>
+          <button onClick={handleHelpClick} className="help-button">Help</button>
+        </div>
         <form onSubmit={handleSubmit}>
           <div>
             <label>Name:</label>
