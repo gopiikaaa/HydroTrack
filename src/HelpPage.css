@@ -1,0 +1,63 @@
+.help-page {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .help-heading {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .steps {
+    margin-top: 20px;
+  }
+  
+  .step {
+    margin-bottom: 20px;
+  }
+  
+  .step h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .step p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-left: 20px;
+  }
+  
+  .resources {
+    margin-top: 40px;
+  }
+  
+  .resources h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .resources ul {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 20px;
+  }
+  
+  .resources li {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .resources li strong {
+    font-weight: bold;
+  }
+  .lastpara{
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    font-weight: bold;
+  }
