@@ -15,8 +15,8 @@ import WaterResourcesList from './WaterResourcesList';
 import HTSearchPage from './HTSearchPage';
 import RequestsList from './unverifiedSources';
 import WaterResourcesListAdmin from './WaterResourcesListAdmin';
-import PaymentPage from './Paymentpage.js'; // Ensure this matches the file name
-
+import PaymentPage from './Paymentpage'; // Ensure this matches the file name
+import HelpPage from './HelpPage';
 
 function App() {
   return (
@@ -38,8 +38,8 @@ function App() {
           <Route path="/unverifiedsources" element={<RequestsList />} />
           <Route path="/HTSearchPage" element={<HTSearchPage />} />
           <Route path="/WaterResourcesListAdmin" element={<WaterResourcesListAdmin />} />
-          <Route path="/payment/:id" element={<PaymentPage />} /> {/* Ensure this matches the path */}
-        
+          <Route path="/payment/:id" element={<PaymentPage />} /> 
+          <Route path="/help" element={<HelpPage />} /> 
         </Routes>
       </div>
     </Router>

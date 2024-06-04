@@ -3,13 +3,10 @@ import "./WaterSalesForm.css";
 import DropdownMenu from "./DropdownMenu";
 import { storage, db } from "./firebase";
 import { addDoc, collection } from "firebase/firestore";
-import {
-  ref as storageRef,
-  uploadBytes,
-  getDownloadURL,
-} from "firebase/storage";
+import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 function WaterSalesForm() {
   const [formData, setFormData] = useState({
@@ -25,6 +22,8 @@ function WaterSalesForm() {
     additionalInfo: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -37,20 +36,21 @@ function WaterSalesForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-        // Email Validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(formData.email)) {
-          toast.error('Please enter a valid email address.');
-          return;
-        }
-    
-        // Mobile Number Validation
-        const mobileRegex = /^\d{10}$/;
-        if (!mobileRegex.test(formData.phoneNumber)) {
-          toast.error('Please enter a valid 10-digit mobile number.');
-          return;
-        }
-    
+
+    // Email Validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error('Please enter a valid email address.');
+      return;
+    }
+
+    // Mobile Number Validation
+    const mobileRegex = /^\d{10}$/;
+    if (!mobileRegex.test(formData.phoneNumber)) {
+      toast.error('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+
     const refs = storageRef(
       storage,
       `/images/${new Date().getUTCMilliseconds}`
@@ -88,71 +88,81 @@ function WaterSalesForm() {
     console.log(docRef.id);
     toast.success('Form Submitted Successfully!')
   };
+
+  const handleHelpClick = () => {
+    navigate('/help');
+  };
+
   return (
     <div>
-      <DropdownMenu /><h2>Water Sales Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+      <DropdownMenu />
+      <div className="form-container">
+        <div className="header-container">
+          <h2>Water Sales Form</h2>
+          <button onClick={handleHelpClick} className="help-button">Help</button>
         </div>
-        <div>
-          <label>Phone Number:</label>
-          <input
-            type="tel"
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Price/Litre:</label>
-          <input
-            type="text"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Source:</label>
-          <input
-            type="text"
-            name="source"
-            value={formData.source}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Address:</label>
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Phone Number:</label>
+            <input
+              type="tel"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Price/Litre:</label>
+            <input
+              type="text"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Source:</label>
+            <input
+              type="text"
+              name="source"
+              value={formData.source}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Address:</label>
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
           <label>Account Number:</label>
           <input
             type="text"
@@ -173,30 +183,31 @@ function WaterSalesForm() {
           />
         </div>
         <div>
-          <label>Upload Certificate:</label>
-          <input type="file" name="certificate" onChange={handleFileChange} />
-        </div>
-        <div>
-          <label>Additional Information:</label>
-          <textarea
-            name="additionalInfo"
-            value={formData.additionalInfo}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+            <label>Upload Certificate:</label>
+            <input type="file" name="certificate" onChange={handleFileChange} />
+          </div>
+          <div>
+            <label>Additional Information:</label>
+            <textarea
+              name="additionalInfo"
+              value={formData.additionalInfo}
+              onChange={handleChange}
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </div>
     </div>
   );
 }
