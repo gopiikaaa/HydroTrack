@@ -40,7 +40,7 @@ const DropdownMenu = () => {
       <div className="dropdown-content">
         <Link to="/feedback">Feedback</Link>
         <Link to="/HTSearchPage">Locate a Water Source</Link>
-        <Link to="/request-supply">Request for Supply</Link>
+        <Link to="/request-supply">Water Sales Form</Link>
         <Link to="/inform-new-source">Inform Us of a New Source</Link>
         <Link to="/WaterResourcesList" className="nav-link">Water Resources List</Link>
         <Link to="/aboutus">About Us</Link>
