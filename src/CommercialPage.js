@@ -18,6 +18,8 @@ function WaterSalesForm() {
     email: "",
     price: "",
     source: "",
+    AccNo: "",
+    ifscCode: "",
     address: "",
     certificate: null,
     additionalInfo: "",
@@ -66,6 +68,8 @@ function WaterSalesForm() {
     data.append("price", formData.price);
     data.append("source", formData.source);
     data.append("address", formData.address);
+    data.append("Account No.", formData.AccNo);
+    data.append("IFSC Code", formData.ifscCode);
     data.append("additionalInfo", formData.additionalInfo);
 
     const fireRef = collection(db, "watersources");
@@ -76,6 +80,8 @@ function WaterSalesForm() {
       price: formData.price,
       source: formData.source,
       address: formData.address,
+      AccNo: formData.AccNo,
+      ifscCode : formData.ifscCode,
       additionalInfo: formData.additionalInfo,
       certificate: url,
     });
@@ -142,6 +148,26 @@ function WaterSalesForm() {
             type="text"
             name="address"
             value={formData.address}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Account Number:</label>
+          <input
+            type="text"
+            name="Account No."
+            value={formData.AccNo}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>IFSC Code:</label>
+          <input
+            type="text"
+            name="IFSC Code"
+            value={formData.ifscCode}
             onChange={handleChange}
             required
           />
