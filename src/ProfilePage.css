@@ -1,44 +1,89 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the top */
+  background-color: #f0f0f0;
+}
+
 .profile-container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  .profile-heading {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .profile-info {
-    margin-bottom: 20px;
-  }
-  
-  .profile-info label {
-    font-weight: bold;
-  }
-  
-  .profile-info p {
-    margin: 5px 0;
-  }
-  
-  .profile-info input[type="text"],
-  .profile-info input[type="number"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-  }
-  
-  .profile-info button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .profile-info button:hover {
-    background-color: #0056b3;
-  }
-  
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-top: 20px; /* Add margin to the top */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.profile-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 20px; /* Adjust this to move the image to the right */
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  margin-bottom: 20px; /* Adjust this to control spacing */
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.edit-button, .history-button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.edit-button:hover, .history-button:hover {
+  background-color: #0056b3;
+}
+
+.edit-options {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.edit-options button {
+  margin-top: 5px;
+  padding: 10px;
+  border: none;
+  background-color: #6c757d;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.edit-options button:hover {
+  background-color: #5a6268;
+}
