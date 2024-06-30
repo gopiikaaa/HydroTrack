@@ -38,6 +38,7 @@ const DropdownMenu = () => {
     <div className="dropdown">
       <button className="dropbtn">&#9776;</button>
       <div className="dropdown-content">
+        <Link to="/ProfilePage">Profile</Link>
         <Link to="/feedback">Feedback</Link>
         <Link to="/HTSearchPage">Locate a Water Source</Link>
         <Link to="/request-supply">Water Sales Form</Link>

@@ -15,14 +15,19 @@ import WaterResourcesList from './WaterResourcesList';
 import HTSearchPage from './HTSearchPage';
 import RequestsList from './unverifiedSources';
 import WaterResourcesListAdmin from './WaterResourcesListAdmin';
-import PaymentPage from './Paymentpage'; // Ensure this matches the file name
+import PaymentPage from './Paymentpage';
+import ProfilePage from './ProfilePage';
 import HelpPage from './HelpPage';
+import EditProfilePage from './EditProfilePage';
+
+
 
 function App() {
   return (
     <Router>
       <div>
         <Routes>
+          <Route path="/ProfilePage" element={<ProfilePage />} /> 
           <Route path="/" element={<UserloginPage />} />
           <Route path="/login/user" element={<LoginPage />} />
           <Route path="/login/admin" element={<AdminLoginPage />} />
@@ -40,6 +45,7 @@ function App() {
           <Route path="/WaterResourcesListAdmin" element={<WaterResourcesListAdmin />} />
           <Route path="/payment/:id" element={<PaymentPage />} /> 
           <Route path="/help" element={<HelpPage />} /> 
+          <Route path="/edit-profile" element={<EditProfilePage />} />
         </Routes>
       </div>
     </Router>
