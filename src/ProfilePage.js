@@ -11,9 +11,10 @@ const ProfilePage = () => {
   };
 
   return (
-    
+  <div className="profile-page">
+    <DropdownMenu />
     <div className="profile-container">
-      <DropdownMenu />
+     
       <div className="profile-content">
         <div className="user-details">
           <h2>User Name</h2>
@@ -26,6 +27,7 @@ const ProfilePage = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 
