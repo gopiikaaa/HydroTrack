@@ -34,7 +34,12 @@ function LoginPage() {
           theme: "colored",
           transition: Zoom,
           }); // Display success toast
-        setTimeout(() => navigate('/login'), 3000); // Navigate after a delay to allow toast to display
+          localStorage.setItem('userId', result.userId);
+          setTimeout(async () => {
+            // If navigate does not return a Promise, remove await
+            await navigate('/ProfilePage');
+          }, 3000); // Navigate after a delay to allow toast to display
+        
       } else {
         toast.error(result.message,  {
           position: "top-center",
