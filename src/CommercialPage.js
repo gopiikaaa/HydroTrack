@@ -166,7 +166,7 @@ function WaterSalesForm() {
           <label>Account Number:</label>
           <input
             type="text"
-            name="Account No."
+            name="AccNo"
             value={formData.AccNo}
             onChange={handleChange}
             required
@@ -176,7 +176,7 @@ function WaterSalesForm() {
           <label>IFSC Code:</label>
           <input
             type="text"
-            name="IFSC Code"
+            name="ifscCode"
             value={formData.ifscCode}
             onChange={handleChange}
             required
