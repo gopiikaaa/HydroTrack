@@ -51,10 +51,13 @@ function WaterSalesForm() {
       return;
     }
 
-    const refs = storageRef(
-      storage,
-      `/images/${new Date().getUTCMilliseconds}`
-    );
+    // Generate a unique filename using the current timestamp and original filename
+    const originalFilename = formData.certificate.name;
+    const timestamp = new Date().getTime(); // Current timestamp
+    const uniqueFilename = `${timestamp}-${originalFilename}`;
+
+    // Update the storageRef path to use the uniqueFilename
+    const refs = storageRef(storage, `/Certificates/${uniqueFilename}`);
 
     const snapshot = await uploadBytes(refs, formData.certificate);
 
