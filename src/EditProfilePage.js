@@ -1,35 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import './EditProfilePage.css';
 
 function EditProfilePage() {
   const [formData, setFormData] = useState({
-    username: 'Current Username',
-    password: 'Current Password',
-    phoneNumber: 'Current Phone Number',
-    ifscCode: 'Current IFSC Code',
-    accountNumber: 'Current Account Number',
+    Username: '',
+    Password: '',
+    phone_no: '',
+    IFSC_Code: '',
+    AccNo: '',
   });
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const db = getFirestore();
+      const userDocId = localStorage.getItem('userId'); // Assuming you store the user ID in localStorage
+      if (userDocId) {
+        const userDocRef = doc(db, 'User', userDocId);
+        const userDocSnap = await getDoc(userDocRef);
+        if (userDocSnap.exists()) {
+          setFormData(userDocSnap.data());
+        } else {
+          console.log('No such document!');
+        }
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   const [editMode, setEditMode] = useState({
-    username: false,
-    password: false,
-    phoneNumber: false,
-    ifscCode: false,
-    accountNumber: false,
+    Username: false,
+    Password: false,
+    phone_no: false,
+    IFSC_Code: false,
+    AccNo: false,
   });
 
   const handleEdit = (field) => {
     setEditMode({ ...editMode, [field]: true });
   };
 
-  const handleSave = (field) => {
-    setEditMode({ ...editMode, [field]: false });
-    // You can add logic here to save the updated data
+  const handleSave = async (field) => {
+    const db = getFirestore();
+    const userDocId = localStorage.getItem('userId');
+    if (userDocId) {
+      const userDocRef = doc(db, 'User', userDocId);
+      try {
+        await updateDoc(userDocRef, {
+          [field]: formData[field],
+        });
+        console.log(`${field} updated successfully`);
+        setEditMode((prev) => ({ ...prev, [field]: false }));
+      } catch (error) {
+        console.error('Error updating document:', error);
+      }
+    }
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    })); 
   };
 
   return (
@@ -37,10 +71,10 @@ function EditProfilePage() {
       <h2>Edit Profile</h2>
       <div className="form-group">
         <label>Username:</label>
-        {!editMode.username ? (
+        {!editMode.Username ? (
           <>
-            <div>{formData.username}</div>
-            <button className="edit-button-white" onClick={() => handleEdit('username')}>
+            <div>{formData.Username}</div>
+            <button className="edit-button-white" onClick={() => handleEdit('Username')}>
               Edit
             </button>
           </>
@@ -48,12 +82,12 @@ function EditProfilePage() {
           <div className="edit-options">
             <input
               type="text"
-              name="username"
-              value={formData.username}
+              name="Username"
+              value={formData.Username}
               onChange={handleChange}
               className="edit-input"
             />
-            <button className="save-button" onClick={() => handleSave('username')}>
+            <button className="save-button" onClick={() => handleSave('Username')}>
               Save
             </button>
           </div>
@@ -61,23 +95,23 @@ function EditProfilePage() {
       </div>
       <div className="form-group">
         <label>Password:</label>
-        {!editMode.password ? (
+        {!editMode.Password ? (
           <>
-            <div>{formData.password}</div>
-            <button className="edit-button-white" onClick={() => handleEdit('password')}>
+            <div>{formData.Password}</div>
+            <button className="edit-button-white" onClick={() => handleEdit('Password')}>
               Edit
             </button>
           </>
         ) : (
           <div className="edit-options">
             <input
-              type="password"
-              name="password"
-              value={formData.password}
+              type="text"
+              name="Password"
+              value={formData.Password}
               onChange={handleChange}
               className="edit-input"
             />
-            <button className="save-button" onClick={() => handleSave('password')}>
+            <button className="save-button" onClick={() => handleSave('Password')}>
               Save
             </button>
           </div>
@@ -85,10 +119,10 @@ function EditProfilePage() {
       </div>
       <div className="form-group">
         <label>Phone Number:</label>
-        {!editMode.phoneNumber ? (
+        {!editMode.phone_no ? (
           <>
-            <div>{formData.phoneNumber}</div>
-            <button className="edit-button-white" onClick={() => handleEdit('phoneNumber')}>
+            <div>{formData.phone_no}</div>
+            <button className="edit-button-white" onClick={() => handleEdit('phone_no')}>
               Edit
             </button>
           </>
@@ -96,12 +130,12 @@ function EditProfilePage() {
           <div className="edit-options">
             <input
               type="text"
-              name="phoneNumber"
-              value={formData.phoneNumber}
+              name="phone_no"
+              value={formData.phone_no}
               onChange={handleChange}
               className="edit-input"
             />
-            <button className="save-button" onClick={() => handleSave('phoneNumber')}>
+            <button className="save-button" onClick={() => handleSave('phone_no')}>
               Save
             </button>
           </div>
@@ -109,10 +143,10 @@ function EditProfilePage() {
       </div>
       <div className="form-group">
         <label>IFSC Code:</label>
-        {!editMode.ifscCode ? (
+        {!editMode.IFSC_Code ? (
           <>
-            <div>{formData.ifscCode}</div>
-            <button className="edit-button-white" onClick={() => handleEdit('ifscCode')}>
+            <div>{formData.IFSC_Code}</div>
+            <button className="edit-button-white" onClick={() => handleEdit('IFSC_Code')}>
               Edit
             </button>
           </>
@@ -120,12 +154,12 @@ function EditProfilePage() {
           <div className="edit-options">
             <input
               type="text"
-              name="ifscCode"
-              value={formData.ifscCode}
+              name="IFSC_Code"
+              value={formData.IFSC_Code}
               onChange={handleChange}
               className="edit-input"
             />
-            <button className="save-button" onClick={() => handleSave('ifscCode')}>
+            <button className="save-button" onClick={() => handleSave('IFSC_Code')}>
               Save
             </button>
           </div>
@@ -133,10 +167,10 @@ function EditProfilePage() {
       </div>
       <div className="form-group">
         <label>Account Number:</label>
-        {!editMode.accountNumber ? (
+        {!editMode.AccNo ? (
           <>
-            <div>{formData.accountNumber}</div>
-            <button className="edit-button-white" onClick={() => handleEdit('accountNumber')}>
+            <div>{formData.AccNo}</div>
+            <button className="edit-button-white" onClick={() => handleEdit('AccNo')}>
               Edit
             </button>
           </>
@@ -144,12 +178,12 @@ function EditProfilePage() {
           <div className="edit-options">
             <input
               type="text"
-              name="accountNumber"
-              value={formData.accountNumber}
+              name="AccNo"
+              value={formData.AccNo}
               onChange={handleChange}
               className="edit-input"
             />
-            <button className="save-button" onClick={() => handleSave('accountNumber')}>
+            <button className="save-button" onClick={() => handleSave('AccNo')}>
               Save
             </button>
           </div>
