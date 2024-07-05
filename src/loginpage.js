@@ -37,7 +37,7 @@ function LoginPage() {
           localStorage.setItem('userId', result.userId);
           setTimeout(async () => {
             // If navigate does not return a Promise, remove await
-            await navigate('/ProfilePage');
+            await navigate('/login');
           }, 3000); // Navigate after a delay to allow toast to display
         
       } else {
