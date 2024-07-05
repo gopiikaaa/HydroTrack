@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import './EditProfilePage.css';
+import DropdownMenu from './DropdownMenu';
 
 function EditProfilePage() {
   const [formData, setFormData] = useState({
@@ -68,6 +69,7 @@ function EditProfilePage() {
 
   return (
     <div className="edit-profile-container">
+       <DropdownMenu />
       <h2>Edit Profile</h2>
       <div className="form-group">
         <label>Username:</label>
