@@ -10,7 +10,6 @@ function PaymentPage() {
   const [resource, setResource] = useState(null);
   const [quantity, setQuantity] = useState('');
   const [amount, setAmount] = useState('');
-  const [payDisabled, setPayDisabled] = useState(true);
 
   useEffect(() => {
     const fetchResource = async () => {
@@ -25,14 +24,6 @@ function PaymentPage() {
 
     fetchResource();
   }, [id]);
-
-  useEffect(() => {
-    if (quantity && amount) {
-      setPayDisabled(false);
-    } else {
-      setPayDisabled(true);
-    }
-  }, [quantity, amount]);
 
   const handlePay = () => {
     // Implement the payment logic here
@@ -67,7 +58,7 @@ function PaymentPage() {
         <button
           className="pay-button"
           onClick={handlePay}
-          disabled={payDisabled}
+          disabled={true} // The button remains disabled
         >
           Pay
         </button>
@@ -77,9 +68,3 @@ function PaymentPage() {
 }
 
 export default PaymentPage;
-
-
-
-
-
-
